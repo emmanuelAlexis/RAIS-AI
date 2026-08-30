@@ -17,9 +17,9 @@ interface CalendrierVueProps {
 }
 
 const PRIORITE_STYLES: Record<string, { bg: string; border: string; text: string; badge: string }> = {
-  urgent:    { bg: "bg-rose-500/20",   border: "border-rose-500/50",   text: "text-rose-300",   badge: "bg-rose-500/20 text-rose-400" },
-  important: { bg: "bg-amber-500/20",  border: "border-amber-500/50",  text: "text-amber-300",  badge: "bg-amber-500/20 text-amber-400" },
-  flexible:  { bg: "bg-slate-500/20",  border: "border-slate-400/50",  text: "text-slate-300",  badge: "bg-slate-500/20 text-slate-400" },
+  urgent:    { bg: "bg-red-500/10",    border: "border-red-500/30",    text: "text-foreground",   badge: "bg-red-500/10 text-red-500" },
+  important: { bg: "bg-amber-400/10", border: "border-amber-400/30", text: "text-foreground",  badge: "bg-amber-400/10 text-amber-500" },
+  flexible:  { bg: "bg-muted/30",     border: "border-border/40",     text: "text-foreground",  badge: "bg-muted/40 text-foreground/60" },
 };
 
 // 08:00 to 20:00 → 12 hours → 720 minutes
@@ -165,7 +165,7 @@ function TaskModal({ task, decisions = [], originalTask, onClose, onSave, allPla
               <div className="flex items-center justify-between">
                 <label className="text-[11px] font-semibold text-foreground/80">Horaire imposé (HH:MM)</label>
                 {editHoraire && (
-                  <button type="button" onClick={() => setEditHoraire("")} className="text-[10px] text-rose-400 hover:underline">
+                  <button type="button" onClick={() => setEditHoraire("")} className="text-[10px] text-neutral-400 hover:underline">
                     Rendre flexible
                   </button>
                 )}
@@ -191,15 +191,15 @@ function TaskModal({ task, decisions = [], originalTask, onClose, onSave, allPla
                         className={`rounded-lg border px-2 py-0.5 text-[10px] font-medium transition-all ${
                           editHoraire === slot.debut
                             ? "border-primary bg-primary text-primary-foreground font-bold"
-                            : "border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20"
+                            : "border-neutral-500/30 bg-neutral-500/10 text-neutral-400 hover:bg-neutral-500/20"
                         }`}
                       >
-                        ✨ {slot.label}
+                        {slot.label}
                       </button>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-[10px] text-amber-400/90 italic">
+                  <p className="text-[10px] text-neutral-400/90 italic">
                     Aucun créneau continu disponible.
                   </p>
                 )}
@@ -252,7 +252,7 @@ function TaskModal({ task, decisions = [], originalTask, onClose, onSave, allPla
       >
         <div className="flex items-start justify-between gap-2">
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400">Tâche planifiée</span>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">Tâche planifiée</span>
             <h3 className="font-bold text-base text-foreground leading-tight">{task.nom}</h3>
             <p className="text-[10px] text-foreground/40 font-mono">ID: {task.id}</p>
           </div>
@@ -274,11 +274,11 @@ function TaskModal({ task, decisions = [], originalTask, onClose, onSave, allPla
         <div className="space-y-3 text-xs text-foreground/70">
           <div className="grid grid-cols-2 gap-2 bg-muted/15 p-3 rounded-2xl border border-border/30">
             <div className="flex items-center gap-2">
-              <Clock className="h-3.5 w-3.5 shrink-0 text-cyan-400" />
+              <Clock className="h-3.5 w-3.5 shrink-0 text-neutral-400" />
               <span>{task.date} · <strong>{task.debut} – {task.fin}</strong></span>
             </div>
             <div className="flex items-center gap-2">
-              <Tag className="h-3.5 w-3.5 shrink-0 text-amber-400" />
+              <Tag className="h-3.5 w-3.5 shrink-0 text-neutral-400" />
               <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold capitalize border ${PRIORITE_STYLES[task.priorite].badge} ${PRIORITE_STYLES[task.priorite].border}`}>
                 {task.priorite}
               </span>
@@ -302,7 +302,7 @@ function TaskModal({ task, decisions = [], originalTask, onClose, onSave, allPla
                 ))}
               </div>
             ) : (
-              <div className="rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-2.5 text-[11px] text-emerald-300">
+              <div className="rounded-xl bg-neutral-500/10 border border-neutral-500/20 p-2.5 text-[11px] text-neutral-300">
                 ✓ Créneau alloué par le solveur selon les contraintes de disponibilité et précédence.
               </div>
             )}

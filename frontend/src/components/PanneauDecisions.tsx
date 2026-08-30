@@ -18,16 +18,16 @@ const ETAPE_LABELS: Record<string, string> = {
 
 const RESULTAT_STYLES: Record<string, { icon: React.ReactNode; color: string }> = {
   place: {
-    icon: <CheckCircle2 className="h-4 w-4 text-emerald-400" />,
-    color: "text-emerald-400",
+    icon: <CheckCircle2 className="h-4 w-4 text-neutral-400" />,
+    color: "text-neutral-400",
   },
   decalee: {
-    icon: <AlertTriangle className="h-4 w-4 text-amber-400" />,
-    color: "text-amber-400",
+    icon: <AlertTriangle className="h-4 w-4 text-neutral-400" />,
+    color: "text-neutral-400",
   },
   non_resolu: {
-    icon: <XCircle className="h-4 w-4 text-rose-400" />,
-    color: "text-rose-400",
+    icon: <XCircle className="h-4 w-4 text-neutral-400" />,
+    color: "text-neutral-400",
   },
 };
 
@@ -88,7 +88,7 @@ export default function PanneauDecisions({ decisions, avertissements, echecs }: 
       {placed.length > 0 && (
         <AccordionItem
           title={`Placements CSP (${placed.length})`}
-          icon={<CheckCircle2 className="h-4 w-4 text-emerald-400" />}
+          icon={<CheckCircle2 className="h-4 w-4 text-neutral-400" />}
           defaultOpen={false}
         >
           {placed.map((d, i) => (
@@ -97,12 +97,12 @@ export default function PanneauDecisions({ decisions, avertissements, echecs }: 
               initial={{ opacity: 0, x: -6 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.03 }}
-              className="flex items-start gap-2 rounded-lg bg-emerald-500/5 border border-emerald-500/20 px-3 py-2 text-xs"
+              className="flex items-start gap-2 rounded-lg bg-neutral-500/5 border border-neutral-500/20 px-3 py-2 text-xs"
             >
-              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 mt-0.5 shrink-0" />
+              <CheckCircle2 className="h-3.5 w-3.5 text-neutral-400 mt-0.5 shrink-0" />
               <div>
                 <p className="font-medium text-foreground/80">
-                  <span className="font-mono text-emerald-400">{d.tache_id}</span>
+                  <span className="font-mono text-neutral-400">{d.tache_id}</span>
                   {d.creneau && <span className="text-foreground/40 ml-1">· {d.date} {d.creneau}</span>}
                 </p>
                 <p className="text-foreground/50 mt-0.5">{d.raison}</p>
@@ -116,7 +116,7 @@ export default function PanneauDecisions({ decisions, avertissements, echecs }: 
       {arbitrages.length > 0 && (
         <AccordionItem
           title={`Arbitrages règles (${arbitrages.length})`}
-          icon={<AlertTriangle className="h-4 w-4 text-amber-400" />}
+          icon={<AlertTriangle className="h-4 w-4 text-neutral-400" />}
           defaultOpen={true}
         >
           {arbitrages.map((d, i) => {
@@ -150,15 +150,15 @@ export default function PanneauDecisions({ decisions, avertissements, echecs }: 
       {avertissements.length > 0 && (
         <AccordionItem
           title={`Avertissements (${avertissements.length})`}
-          icon={<Info className="h-4 w-4 text-sky-400" />}
+          icon={<Info className="h-4 w-4 text-neutral-400" />}
           defaultOpen={false}
         >
           {avertissements.map((a, i) => (
             <div
               key={i}
-              className="flex items-start gap-2 rounded-lg bg-sky-500/5 border border-sky-500/20 px-3 py-2 text-xs text-foreground/60"
+              className="flex items-start gap-2 rounded-lg bg-neutral-500/5 border border-neutral-500/20 px-3 py-2 text-xs text-foreground/60"
             >
-              <Info className="h-3.5 w-3.5 text-sky-400 mt-0.5 shrink-0" />
+              <Info className="h-3.5 w-3.5 text-neutral-400 mt-0.5 shrink-0" />
               <span>{a}</span>
             </div>
           ))}
@@ -169,17 +169,17 @@ export default function PanneauDecisions({ decisions, avertissements, echecs }: 
       {echecs.length > 0 && (
         <AccordionItem
           title={`Échecs (${echecs.length})`}
-          icon={<XCircle className="h-4 w-4 text-rose-400" />}
+          icon={<XCircle className="h-4 w-4 text-neutral-400" />}
           defaultOpen={true}
         >
           {echecs.map((e, i) => (
             <div
               key={i}
-              className="rounded-lg bg-rose-500/10 border border-rose-500/50 px-3 py-2.5 text-xs space-y-1 shadow-sm shadow-rose-500/10"
+              className="rounded-lg bg-neutral-500/10 border border-neutral-500/50 px-3 py-2.5 text-xs space-y-1 shadow-sm shadow-neutral-500/10"
             >
               <div className="flex items-center gap-2">
-                <XCircle className="h-4 w-4 text-rose-500 shrink-0" />
-                <span className="font-mono text-rose-500 font-bold">{e.taches.join(", ")}</span>
+                <XCircle className="h-4 w-4 text-neutral-500 shrink-0" />
+                <span className="font-mono text-neutral-500 font-bold">{e.taches.join(", ")}</span>
               </div>
               <p className="text-foreground/60">{e.raison}</p>
             </div>

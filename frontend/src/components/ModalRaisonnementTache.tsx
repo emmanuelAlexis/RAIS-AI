@@ -74,8 +74,8 @@ export default function ModalRaisonnementTache({
               <div
                 className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl ${
                   isPlanned
-                    ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/20"
-                    : "bg-rose-500/15 text-rose-400 border border-rose-500/20"
+                    ? "bg-neutral-500/15 text-neutral-400 border border-neutral-500/20"
+                    : "bg-neutral-500/15 text-neutral-400 border border-neutral-500/20"
                 }`}
               >
                 {isPlanned ? (
@@ -88,8 +88,8 @@ export default function ModalRaisonnementTache({
                 <span
                   className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${
                     isPlanned
-                      ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30"
-                      : "bg-rose-500/15 text-rose-400 border border-rose-500/30"
+                      ? "bg-neutral-500/15 text-neutral-400 border border-neutral-500/30"
+                      : "bg-neutral-500/15 text-neutral-400 border border-neutral-500/30"
                   }`}
                 >
                   {isPlanned ? "Planifiée avec succès" : "Non planifiée / Refusée"}
@@ -119,10 +119,10 @@ export default function ModalRaisonnementTache({
               <span
                 className={`font-semibold capitalize ${
                   task.priorite === "urgent"
-                    ? "text-rose-400"
+                    ? "text-neutral-400"
                     : task.priorite === "important"
-                    ? "text-amber-400"
-                    : "text-slate-400"
+                    ? "text-neutral-400"
+                    : "text-neutral-400"
                 }`}
               >
                 {task.priorite}
@@ -139,7 +139,7 @@ export default function ModalRaisonnementTache({
           {/* Decision Reasoning Section */}
           <div className="space-y-2.5">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground/60 flex items-center gap-1.5">
-              <Brain className="h-3.5 w-3.5 text-violet-400" />
+              <Brain className="h-3.5 w-3.5 text-neutral-400" />
               Raisonnement & Décisions du solveur
             </h4>
 
@@ -153,11 +153,11 @@ export default function ModalRaisonnementTache({
                     <div className="flex items-center justify-between">
                       <span className="font-semibold text-foreground flex items-center gap-1.5">
                         {d.resultat === "place" ? (
-                          <CheckCircle2 className="h-3 w-3 text-emerald-400" />
+                          <CheckCircle2 className="h-3 w-3 text-neutral-400" />
                         ) : d.resultat === "decalee" ? (
-                          <AlertTriangle className="h-3 w-3 text-amber-400" />
+                          <AlertTriangle className="h-3 w-3 text-neutral-400" />
                         ) : (
-                          <XCircle className="h-3 w-3 text-rose-400" />
+                          <XCircle className="h-3 w-3 text-neutral-400" />
                         )}
                         Étape : {d.etape.replace("_", " ")}
                       </span>
@@ -174,8 +174,8 @@ export default function ModalRaisonnementTache({
                 ))}
               </div>
             ) : failureReason ? (
-              <div className="rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-xs space-y-1">
-                <div className="flex items-center gap-1.5 text-rose-400 font-semibold">
+              <div className="rounded-xl border border-neutral-500/20 bg-neutral-500/10 p-3 text-xs space-y-1">
+                <div className="flex items-center gap-1.5 text-neutral-400 font-semibold">
                   <AlertTriangle className="h-3.5 w-3.5 shrink-0" />
                   <span>Motif du refus ou de l'échec</span>
                 </div>
@@ -184,7 +184,7 @@ export default function ModalRaisonnementTache({
                 </p>
               </div>
             ) : isPlanned ? (
-              <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-xs text-emerald-300">
+              <div className="rounded-xl border border-neutral-500/20 bg-neutral-500/10 p-3 text-xs text-neutral-300">
                 <p className="leading-relaxed">
                   ✓ Cette tâche a été allouée sans conflit sur le créneau{" "}
                   <strong>{slotStr}</strong> selon les contraintes de disponibilité et de pause.

@@ -58,6 +58,32 @@ function formatMinutes(min: number): string {
   return `${h}h${m.toString().padStart(2, "0")}`;
 }
 
+// ─── Couleurs sémantiques par priorité ───────────────────────────────────────
+
+const PRIORITE_META: Record<
+  "urgent" | "important" | "flexible",
+  { label: string; badge: string; bar: string; dot: string }
+> = {
+  urgent: {
+    label: "Urgente",
+    badge: "bg-red-500/10 text-red-500 border border-red-500/30",
+    bar: "bg-red-500",
+    dot: "bg-red-500",
+  },
+  important: {
+    label: "Importante",
+    badge: "bg-amber-400/10 text-amber-500 border border-amber-400/30",
+    bar: "bg-amber-400",
+    dot: "bg-amber-400",
+  },
+  flexible: {
+    label: "Flexible",
+    badge: "bg-neutral-500/10 text-neutral-400 border border-neutral-500/20",
+    bar: "bg-foreground/30",
+    dot: "bg-neutral-500",
+  },
+};
+
 // ─── Scenario definitions ────────────────────────────────────────────────────
 
 interface ScenarioDefinition {
@@ -78,9 +104,9 @@ const SCENARIOS: ScenarioDefinition[] = [
       "6 tâches sur 5 jours avec des priorités mixtes et aucune dépendance. Cas de base pour valider la répartition équilibrée.",
     icon: <CalendarDays className="h-5 w-5" />,
     tags: [
-      { label: "6 tâches", color: "bg-violet-500/20 text-violet-400 border-violet-500/30" },
-      { label: "5 jours", color: "bg-sky-500/20 text-sky-400 border-sky-500/30" },
-      { label: "Débutant", color: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" },
+      { label: "6 tâches", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
+      { label: "5 jours", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
+      { label: "Débutant", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
     ],
     complexity: 1,
     tasks: (today) => [
@@ -99,9 +125,9 @@ const SCENARIOS: ScenarioDefinition[] = [
       "5 tâches formant une chaîne A→B→C→D→E. Teste la résolution stricte des contraintes de précédence et d'ordonnancement.",
     icon: <GitBranch className="h-5 w-5" />,
     tags: [
-      { label: "5 tâches", color: "bg-violet-500/20 text-violet-400 border-violet-500/30" },
-      { label: "Dépendances", color: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
-      { label: "Intermédiaire", color: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
+      { label: "5 tâches", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
+      { label: "Dépendances", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
+      { label: "Intermédiaire", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
     ],
     complexity: 2,
     tasks: (today) => [
@@ -119,9 +145,9 @@ const SCENARIOS: ScenarioDefinition[] = [
       "4 tâches urgentes en compétition sur les mêmes créneaux. Illustre la puissance de l'arbitrage par règles métier.",
     icon: <Zap className="h-5 w-5" />,
     tags: [
-      { label: "Tout urgent", color: "bg-rose-500/20 text-rose-400 border-rose-500/30" },
-      { label: "1 jour", color: "bg-sky-500/20 text-sky-400 border-sky-500/30" },
-      { label: "Conflits", color: "bg-rose-500/20 text-rose-400 border-rose-500/30" },
+      { label: "Tout urgent", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
+      { label: "1 jour", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
+      { label: "Conflits", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
     ],
     complexity: 2,
     tasks: (today) => [
@@ -138,9 +164,9 @@ const SCENARIOS: ScenarioDefinition[] = [
       "Mix de créneaux imposés et de tâches à caser dans les fenêtres disponibles. Optimise l'occupation du temps.",
     icon: <Clock className="h-5 w-5" />,
     tags: [
-      { label: "8 tâches", color: "bg-violet-500/20 text-violet-400 border-violet-500/30" },
-      { label: "Horaires fixes", color: "bg-cyan-500/20 text-cyan-400 border-cyan-500/30" },
-      { label: "Intermédiaire", color: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
+      { label: "8 tâches", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
+      { label: "Horaires fixes", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
+      { label: "Intermédiaire", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
     ],
     complexity: 2,
     tasks: (today) => [
@@ -161,9 +187,9 @@ const SCENARIOS: ScenarioDefinition[] = [
       "12 tâches condensées sur 3 jours avec contraintes denses. Permet d'observer la gestion de surcharge et d'échecs.",
     icon: <Layers className="h-5 w-5" />,
     tags: [
-      { label: "12 tâches", color: "bg-violet-500/20 text-violet-400 border-violet-500/30" },
-      { label: "3 jours", color: "bg-sky-500/20 text-sky-400 border-sky-500/30" },
-      { label: "Avancé", color: "bg-rose-500/20 text-rose-400 border-rose-500/30" },
+      { label: "12 tâches", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
+      { label: "3 jours", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
+      { label: "Avancé", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
     ],
     complexity: 3,
     tasks: (today) => [
@@ -188,9 +214,9 @@ const SCENARIOS: ScenarioDefinition[] = [
       "Sprint de 5 jours complet avec tâches parallèles de frontend/backend, intégration continue et points quotidiens.",
     icon: <Users className="h-5 w-5" />,
     tags: [
-      { label: "9 tâches", color: "bg-violet-500/20 text-violet-400 border-violet-500/30" },
-      { label: "Sprint complet", color: "bg-indigo-500/20 text-indigo-400 border-indigo-500/30" },
-      { label: "Avancé", color: "bg-rose-500/20 text-rose-400 border-rose-500/30" },
+      { label: "9 tâches", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
+      { label: "Sprint complet", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
+      { label: "Avancé", color: "bg-neutral-500/20 text-neutral-400 border-neutral-500/30" },
     ],
     complexity: 3,
     tasks: (today) => [
@@ -218,10 +244,10 @@ function ComplexityDots({ level }: { level: 1 | 2 | 3 }) {
           className={`h-1.5 w-3.5 rounded-full transition-colors ${
             i <= level
               ? level === 1
-                ? "bg-emerald-400"
+                ? "bg-neutral-400"
                 : level === 2
-                ? "bg-amber-400"
-                : "bg-rose-400"
+                ? "bg-neutral-400"
+                : "bg-neutral-400"
               : "bg-border/40"
           }`}
         />
@@ -256,8 +282,8 @@ function ModeResultCard({
     <div
       className={`rounded-2xl border p-4 space-y-4 ${
         isCspRegles
-          ? "border-violet-500/30 bg-violet-500/5"
-          : "border-sky-500/30 bg-sky-500/5"
+          ? "border-emerald-500/25 bg-emerald-500/5"
+          : "border-sky-500/25 bg-sky-500/5"
       }`}
     >
       {/* Mode header */}
@@ -265,13 +291,13 @@ function ModeResultCard({
         <div className="flex items-center gap-2">
           <div
             className={`flex h-7 w-7 items-center justify-center rounded-lg ${
-              isCspRegles ? "bg-violet-500/20" : "bg-sky-500/20"
+              isCspRegles ? "bg-emerald-500/15" : "bg-sky-500/15"
             }`}
           >
             {isCspRegles ? (
-              <Brain className="h-3.5 w-3.5 text-violet-400" />
+              <Brain className="h-3.5 w-3.5 text-emerald-500" />
             ) : (
-              <Cpu className="h-3.5 w-3.5 text-sky-400" />
+              <Cpu className="h-3.5 w-3.5 text-sky-500" />
             )}
           </div>
           <div>
@@ -287,8 +313,8 @@ function ModeResultCard({
           <span
             className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${
               result.planning.length === taskCount
-                ? "bg-emerald-500/20 text-emerald-400"
-                : "bg-amber-500/20 text-amber-400"
+                ? "bg-emerald-500/15 text-emerald-500"
+                : "bg-amber-400/15 text-amber-500"
             }`}
           >
             {result.planning.length}/{taskCount} placées
@@ -320,20 +346,56 @@ function ModeResultCard({
         >
           {/* Stats grid */}
           <div className="grid grid-cols-2 gap-2">
-            <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-center">
-              <p className="text-xl font-bold text-emerald-400">{result.planning.length}</p>
+            <div
+              className={`rounded-xl border p-3 text-center ${
+                isCspRegles
+                  ? "border-emerald-500/20 bg-emerald-500/10"
+                  : "border-sky-500/20 bg-sky-500/10"
+              }`}
+            >
+              <p className={`text-xl font-bold ${isCspRegles ? "text-emerald-500" : "text-sky-500"}`}>
+                {result.planning.length}
+              </p>
               <p className="text-[10px] text-foreground/50 mt-0.5">placées</p>
             </div>
-            <div className="rounded-xl border border-rose-500/20 bg-rose-500/10 p-3 text-center">
-              <p className="text-xl font-bold text-rose-400">{result.taches_non_planifiees.length}</p>
+            <div
+              className={`rounded-xl border p-3 text-center ${
+                result.taches_non_planifiees.length > 0
+                  ? "border-red-500/25 bg-red-500/5"
+                  : "border-border/30 bg-muted/20"
+              }`}
+            >
+              <p className={`text-xl font-bold ${result.taches_non_planifiees.length > 0 ? "text-red-500" : "text-foreground/60"}`}>
+                {result.taches_non_planifiees.length}
+              </p>
               <p className="text-[10px] text-foreground/50 mt-0.5">non planifiées</p>
             </div>
-            <div className="rounded-xl border border-amber-500/20 bg-amber-500/10 p-3 text-center">
-              <p className="text-xl font-bold text-amber-400">{result.avertissements.length}</p>
+            <div
+              className={`rounded-xl border p-3 text-center ${
+                result.avertissements.length > 0
+                  ? "border-amber-400/25 bg-amber-400/5"
+                  : "border-border/30 bg-muted/20"
+              }`}
+            >
+              <p className={`text-xl font-bold ${result.avertissements.length > 0 ? "text-amber-500" : "text-foreground/60"}`}>
+                {result.avertissements.length}
+              </p>
               <p className="text-[10px] text-foreground/50 mt-0.5">avertissements</p>
             </div>
-            <div className="rounded-xl border border-border/30 bg-muted/20 p-3 text-center">
-              <p className="text-xl font-bold text-foreground/70">
+            <div
+              className={`rounded-xl border p-3 text-center ${
+                Math.round((result.planning.length / Math.max(taskCount, 1)) * 100) === 100
+                  ? "border-emerald-500/25 bg-emerald-500/5"
+                  : "border-border/30 bg-muted/20"
+              }`}
+            >
+              <p
+                className={`text-xl font-bold ${
+                  Math.round((result.planning.length / Math.max(taskCount, 1)) * 100) === 100
+                    ? "text-emerald-600 dark:text-emerald-400"
+                    : "text-foreground/70"
+                }`}
+              >
                 {Math.round((result.planning.length / Math.max(taskCount, 1)) * 100)}%
               </p>
               <p className="text-[10px] text-foreground/50 mt-0.5">taux de succès</p>
@@ -342,15 +404,15 @@ function ModeResultCard({
 
           {/* Unplanned tasks */}
           {result.taches_non_planifiees.length > 0 && (
-            <div className="rounded-xl border border-rose-500/20 bg-rose-500/5 p-3 space-y-2">
-              <p className="text-xs font-semibold text-rose-400 flex items-center gap-1.5">
+            <div className="rounded-xl border border-neutral-500/20 bg-neutral-500/5 p-3 space-y-2">
+              <p className="text-xs font-semibold text-neutral-400 flex items-center gap-1.5">
                 <AlertTriangle className="h-3 w-3" />
                 {result.taches_non_planifiees.length} non planifiée(s)
               </p>
               {result.taches_non_planifiees.map((t) => (
                 <div
                   key={t.id}
-                  className="rounded-xl bg-background/60 p-2.5 border border-rose-500/15 text-xs space-y-1.5"
+                  className="rounded-xl bg-background/60 p-2.5 border border-neutral-500/15 text-xs space-y-1.5"
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-semibold text-foreground">{t.nom}</span>
@@ -386,7 +448,7 @@ function ModeResultCard({
                       </button>
                     </div>
                   </div>
-                  <p className="text-[11px] text-rose-400 leading-snug">{t.raison}</p>
+                  <p className="text-[11px] text-neutral-400 leading-snug">{t.raison}</p>
                 </div>
               ))}
             </div>
@@ -422,7 +484,7 @@ function ModeResultCard({
                         >
                           <div className="flex items-center justify-between mb-0.5">
                             <div className="flex items-center gap-1.5">
-                              <CheckCircle2 className="h-3 w-3 text-emerald-400 shrink-0" />
+                              <CheckCircle2 className="h-3 w-3 text-neutral-400 shrink-0" />
                               <span className="font-medium text-foreground/80 truncate">
                                 {d.tache_id}
                               </span>
@@ -447,8 +509,8 @@ function ModeResultCard({
 
           {/* Warnings */}
           {result.avertissements.length > 0 && (
-            <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3 space-y-1">
-              <p className="text-xs font-semibold text-amber-400 flex items-center gap-1.5">
+            <div className="rounded-xl border border-neutral-500/20 bg-neutral-500/5 p-3 space-y-1">
+              <p className="text-xs font-semibold text-neutral-400 flex items-center gap-1.5">
                 <AlertTriangle className="h-3 w-3" />
                 Avertissements ({result.avertissements.length})
               </p>
@@ -462,8 +524,8 @@ function ModeResultCard({
 
           {/* Echecs */}
           {result.echecs.length > 0 && (
-            <div className="rounded-xl border border-rose-500/20 bg-rose-500/5 p-3 space-y-1">
-              <p className="text-xs font-semibold text-rose-400 flex items-center gap-1.5">
+            <div className="rounded-xl border border-neutral-500/20 bg-neutral-500/5 p-3 space-y-1">
+              <p className="text-xs font-semibold text-neutral-400 flex items-center gap-1.5">
                 <XCircle className="h-3 w-3" />
                 Échecs CSP
               </p>
@@ -611,15 +673,30 @@ export default function ScenariosPage() {
   // Active result for calendar view
   const activeCalendarResult = calendarMode === "csp_regles" ? resultRegles : resultCsp;
 
+  // Taux de succès global (pour le badge du panneau latéral)
+  const succRate = activeCalendarResult
+    ? Math.round((activeCalendarResult.planning.length / Math.max(currentTasks.length, 1)) * 100)
+    : 0;
+
+  // Progression de planification par priorité (barres animées)
+  const priorityStats = useMemo(() => {
+    const placedIds = new Set((activeCalendarResult?.planning ?? []).map((p) => p.id));
+    return (["urgent", "important", "flexible"] as const).map((priorite) => {
+      const total = currentTasks.filter((t) => t.priorite === priorite).length;
+      const placed = currentTasks.filter(
+        (t) => t.priorite === priorite && placedIds.has(t.id)
+      ).length;
+      return {
+        priorite,
+        total,
+        placed,
+        pct: total > 0 ? Math.round((placed / total) * 100) : 100,
+      };
+    });
+  }, [activeCalendarResult, currentTasks]);
+
   return (
     <main className="min-h-screen bg-background text-foreground">
-      {/* Background ambient glows */}
-      <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -left-40 top-20 h-80 w-80 rounded-full bg-violet-500/10 blur-3xl" />
-        <div className="absolute -right-32 bottom-20 h-96 w-96 rounded-full bg-primary/8 blur-3xl" />
-        <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/5 blur-3xl" />
-      </div>
-
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-border/40 bg-background/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
@@ -633,7 +710,7 @@ export default function ScenariosPage() {
             </Link>
             <div className="h-4 w-px bg-border/50" />
             <div className="flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-violet-500/15 text-violet-400">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-neutral-500/15 text-neutral-400">
                 <FlaskConical className="h-4 w-4" />
               </div>
               <div>
@@ -756,7 +833,7 @@ export default function ScenariosPage() {
                       </span>
                     ))}
                     {customTasksMap[activeScenarioId] && (
-                      <span className="rounded-full border border-amber-500/40 bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-300">
+                      <span className="rounded-full border border-neutral-500/40 bg-neutral-500/10 px-2 py-0.5 text-[10px] font-semibold text-neutral-300">
                         Modifié
                       </span>
                     )}
@@ -811,14 +888,14 @@ export default function ScenariosPage() {
               </div>
             </div>
             <div className="flex items-center gap-2 rounded-xl bg-muted/20 px-3 py-2 border border-border/30">
-              <Timer className="h-4 w-4 text-cyan-400" />
+              <Timer className="h-4 w-4 text-neutral-400" />
               <div>
                 <span className="text-[10px] text-foreground/40 block">Volume horaire</span>
                 <span className="font-semibold text-foreground">{formatMinutes(totalDurationMin)}</span>
               </div>
             </div>
             <div className="flex items-center gap-2 rounded-xl bg-muted/20 px-3 py-2 border border-border/30">
-              <Zap className="h-4 w-4 text-rose-400" />
+              <Zap className="h-4 w-4 text-neutral-400" />
               <div>
                 <span className="text-[10px] text-foreground/40 block">Tâches urgentes</span>
                 <span className="font-semibold text-foreground">
@@ -827,7 +904,7 @@ export default function ScenariosPage() {
               </div>
             </div>
             <div className="flex items-center gap-2 rounded-xl bg-muted/20 px-3 py-2 border border-border/30">
-              <GitBranch className="h-4 w-4 text-amber-400" />
+              <GitBranch className="h-4 w-4 text-neutral-400" />
               <div>
                 <span className="text-[10px] text-foreground/40 block">Avec dépendances</span>
                 <span className="font-semibold text-foreground">
@@ -843,44 +920,57 @@ export default function ScenariosPage() {
           <div className="flex gap-1.5 bg-muted/20 p-1 rounded-xl border border-border/40">
             <button
               onClick={() => setActiveTab("tasks")}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 activeTab === "tasks"
-                  ? "bg-background text-foreground shadow-sm"
-                  : "text-foreground/50 hover:text-foreground/80"
+                  ? "bg-background text-foreground shadow-sm ring-1 ring-border/60"
+                  : "text-foreground/50 hover:text-foreground/80 hover:bg-muted/40"
               }`}
             >
-              <ListTodo className="h-3.5 w-3.5" />
-              Liste des tâches ({currentTasks.length})
+              <ListTodo className={`h-3.5 w-3.5 ${activeTab === "tasks" ? "text-primary" : "text-neutral-400"}`} />
+              Liste des tâches
+              <span
+                className={`rounded-full px-1.5 py-0.5 text-[10px] font-bold ${
+                  activeTab === "tasks"
+                    ? "bg-primary/15 text-primary"
+                    : "bg-muted/60 text-foreground/50"
+                }`}
+              >
+                {currentTasks.length}
+              </span>
             </button>
 
             <button
               onClick={() => setActiveTab("comparison")}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 activeTab === "comparison"
-                  ? "bg-background text-foreground shadow-sm"
-                  : "text-foreground/50 hover:text-foreground/80"
+                  ? "bg-background text-foreground shadow-sm ring-1 ring-border/60"
+                  : "text-foreground/50 hover:text-foreground/80 hover:bg-muted/40"
               }`}
             >
-              <BarChart3 className="h-3.5 w-3.5 text-violet-400" />
+              <BarChart3 className={`h-3.5 w-3.5 ${activeTab === "comparison" ? "text-violet-500" : "text-neutral-400"}`} />
               Comparatif CSP vs Règles
               {hasResults && (
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                <span className="h-2 w-2 rounded-full bg-violet-500 animate-pulse" />
               )}
             </button>
 
             <button
               onClick={() => setActiveTab("calendar")}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 activeTab === "calendar"
-                  ? "bg-background text-foreground shadow-sm"
-                  : "text-foreground/50 hover:text-foreground/80"
+                  ? "bg-background text-foreground shadow-sm ring-1 ring-border/60"
+                  : "text-foreground/50 hover:text-foreground/80 hover:bg-muted/40"
               }`}
             >
-              <CalendarIcon className="h-3.5 w-3.5 text-primary" />
+              <CalendarIcon className={`h-3.5 w-3.5 ${activeTab === "calendar" ? "text-emerald-500" : "text-neutral-400"}`} />
               Vue Calendrier
-              {hasResults && (
-                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-              )}
+              {activeCalendarResult ? (
+                <span className="rounded-full bg-emerald-500/15 px-1.5 py-0.5 text-[10px] font-bold text-emerald-500">
+                  {activeCalendarResult.planning.length}/{currentTasks.length}
+                </span>
+              ) : hasResults ? (
+                <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+              ) : null}
             </button>
           </div>
 
@@ -890,22 +980,22 @@ export default function ScenariosPage() {
                 onClick={() => setCalendarMode("csp_regles")}
                 className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg font-medium transition-colors ${
                   calendarMode === "csp_regles"
-                    ? "bg-violet-500/20 text-violet-300 border border-violet-500/40"
+                    ? "bg-emerald-500/15 text-emerald-500 border border-emerald-500/30 shadow-sm"
                     : "text-foreground/50 hover:text-foreground/80"
                 }`}
               >
-                <Brain className="h-3 w-3 text-violet-400" />
+                <Brain className={`h-3 w-3 ${calendarMode === "csp_regles" ? "text-emerald-500" : "text-neutral-400"}`} />
                 CSP + Règles ({resultRegles?.planning.length ?? 0})
               </button>
               <button
                 onClick={() => setCalendarMode("csp_seul")}
                 className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg font-medium transition-colors ${
                   calendarMode === "csp_seul"
-                    ? "bg-sky-500/20 text-sky-300 border border-sky-500/40"
+                    ? "bg-sky-500/15 text-sky-500 border border-sky-500/30 shadow-sm"
                     : "text-foreground/50 hover:text-foreground/80"
                 }`}
               >
-                <Cpu className="h-3 w-3 text-sky-400" />
+                <Cpu className={`h-3 w-3 ${calendarMode === "csp_seul" ? "text-sky-500" : "text-neutral-400"}`} />
                 CSP seul ({resultCsp?.planning.length ?? 0})
               </button>
             </div>
@@ -962,10 +1052,10 @@ export default function ScenariosPage() {
                       <span
                         className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${
                           t.priorite === "urgent"
-                            ? "bg-rose-500/20 text-rose-400 border border-rose-500/30"
+                            ? "bg-red-500/10 text-red-500 border border-red-500/30"
                             : t.priorite === "important"
-                            ? "bg-amber-500/20 text-amber-400 border border-amber-500/30"
-                            : "bg-slate-500/20 text-slate-400 border border-slate-500/30"
+                            ? "bg-amber-400/10 text-amber-500 border border-amber-400/30"
+                            : "bg-neutral-500/10 text-neutral-400 border border-neutral-500/20"
                         }`}
                       >
                         {t.priorite}
@@ -992,11 +1082,11 @@ export default function ScenariosPage() {
                           <Clock className="h-3 w-3" /> Contrainte horaire
                         </span>
                         {t.horaire_fixe ? (
-                          <span className="font-semibold text-cyan-400 bg-cyan-500/10 px-1.5 py-0.5 rounded border border-cyan-500/20">
+                          <span className="font-semibold text-neutral-400 bg-neutral-500/10 px-1.5 py-0.5 rounded border border-neutral-500/20">
                             Fixe {t.horaire_fixe}
                           </span>
                         ) : t.plage_disponibilite ? (
-                          <span className="font-medium text-amber-400">
+                          <span className="font-medium text-neutral-400">
                             {t.plage_disponibilite.map(([s, e]) => `${s}-${e}`).join(", ")}
                           </span>
                         ) : (
@@ -1007,7 +1097,7 @@ export default function ScenariosPage() {
                       {t.dependances.length > 0 && (
                         <div className="pt-1.5 border-t border-border/30 flex items-center justify-between">
                           <span className="text-foreground/40 flex items-center gap-1">
-                            <GitBranch className="h-3 w-3 text-amber-400" /> Précédence
+                            <GitBranch className="h-3 w-3 text-neutral-400" /> Précédence
                           </span>
                           <div className="flex gap-1 flex-wrap justify-end">
                             {t.dependances.map((depId) => {
@@ -1015,7 +1105,7 @@ export default function ScenariosPage() {
                               return (
                                 <span
                                   key={depId}
-                                  className="rounded bg-amber-500/15 border border-amber-500/30 px-1.5 py-0.5 text-[10px] text-amber-300 font-medium"
+                                  className="rounded bg-neutral-500/15 border border-neutral-500/30 px-1.5 py-0.5 text-[10px] text-neutral-300 font-medium"
                                   title={`Dépend de ${depTask?.nom ?? depId}`}
                                 >
                                   ➔ {depTask?.nom ?? depId}
@@ -1039,7 +1129,7 @@ export default function ScenariosPage() {
                           }
                           className="flex-1 flex items-center justify-center gap-1 rounded-lg border border-border/40 bg-muted/20 py-1.5 text-[11px] font-medium text-foreground/70 hover:bg-muted/40 transition-colors"
                         >
-                          <Eye className="h-3 w-3 text-violet-400" />
+                          <Eye className="h-3 w-3 text-neutral-400" />
                           Raisonnement
                         </button>
                       ) : (
@@ -1122,12 +1212,12 @@ export default function ScenariosPage() {
                     <thead>
                       <tr className="border-b border-border/40">
                         <th className="pb-2 text-left font-medium text-foreground/50">Métrique</th>
-                        <th className="pb-2 text-center font-medium text-sky-400">
+                        <th className="pb-2 text-center font-medium text-sky-500">
                           <span className="flex items-center justify-center gap-1">
                             <Cpu className="h-3 w-3" /> CSP seul
                           </span>
                         </th>
-                        <th className="pb-2 text-center font-medium text-violet-400">
+                        <th className="pb-2 text-center font-medium text-emerald-500">
                           <span className="flex items-center justify-center gap-1">
                             <Brain className="h-3 w-3" /> CSP + Règles
                           </span>
@@ -1191,9 +1281,9 @@ export default function ScenariosPage() {
                                 <span
                                   className={`font-semibold ${
                                     isBetter
-                                      ? "text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded"
+                                      ? "text-neutral-400 bg-neutral-500/10 px-2 py-0.5 rounded"
                                       : isWorse
-                                      ? "text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded"
+                                      ? "text-neutral-400 bg-neutral-500/10 px-2 py-0.5 rounded"
                                       : "text-foreground/40"
                                   }`}
                                 >
@@ -1220,26 +1310,28 @@ export default function ScenariosPage() {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-4"
           >
-            <div className="rounded-2xl border border-border/40 bg-background/60 p-4 sm:p-5 shadow-sm backdrop-blur-sm space-y-4">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <h3 className="text-sm font-semibold text-foreground/90 flex items-center gap-2">
-                    <CalendarIcon className="h-4 w-4 text-primary" />
-                    Planning généré
-                    {activeCalendarResult && (
-                      <span className="rounded-full bg-primary/15 px-2.5 py-0.5 text-xs text-primary font-medium">
-                        {activeCalendarResult.planning.length} créneaux
-                      </span>
-                    )}
-                  </h3>
+            <div className="grid items-start gap-4 xl:grid-cols-[minmax(0,1fr)_340px]">
+              {/* ── Calendrier principal ── */}
+              <div className="rounded-2xl border border-border/40 bg-background/60 p-4 sm:p-5 shadow-sm backdrop-blur-sm space-y-4">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <h3 className="text-sm font-semibold text-foreground/90 flex items-center gap-2">
+                      <CalendarIcon className="h-4 w-4 text-primary" />
+                      Planning généré
+                      {activeCalendarResult && (
+                        <span className="rounded-full bg-primary/15 px-2.5 py-0.5 text-xs text-primary font-medium">
+                          {activeCalendarResult.planning.length}/{currentTasks.length} créneaux
+                        </span>
+                      )}
+                    </h3>
                   <div className="h-4 w-px bg-border/50 hidden sm:block" />
                   <span className="text-xs text-foreground/50 hidden sm:inline">
                     Mode affiché :{" "}
                     <strong
                       className={
                         calendarMode === "csp_regles"
-                          ? "text-violet-400"
-                          : "text-sky-400"
+                          ? "text-emerald-500"
+                          : "text-sky-500"
                       }
                     >
                       {calendarMode === "csp_regles" ? "CSP + Règles" : "CSP seul"}
@@ -1287,71 +1379,172 @@ export default function ScenariosPage() {
                   </button>
                 </div>
               )}
+              </div>
 
-              {/* Unplanned tasks warning in calendar view */}
-              {activeCalendarResult && activeCalendarResult.taches_non_planifiees.length > 0 && (
-                <div className="rounded-xl border border-rose-500/20 bg-rose-500/5 p-3.5 space-y-2">
-                  <p className="text-xs font-semibold text-rose-400 flex items-center gap-1.5">
-                    <AlertTriangle className="h-3.5 w-3.5" />
-                    {activeCalendarResult.taches_non_planifiees.length} tâche(s) non planifiée(s) dans ce mode :
-                  </p>
-                  <div className="grid gap-2 sm:grid-cols-2">
-                    {activeCalendarResult.taches_non_planifiees.map((t) => (
-                      <div key={t.id} className="rounded-lg bg-background/60 p-2.5 border border-rose-500/15 text-xs">
-                        <div className="flex justify-between font-medium text-foreground">
-                          <span>{t.nom}</span>
-                          <div className="flex items-center gap-1">
-                            <button
-                              onClick={() => setInspectingTask({ task: t as any, reason: t.raison })}
-                              className="px-2 py-0.5 text-[10px] rounded bg-muted/40 hover:bg-muted/70 text-foreground/70"
-                            >
-                              Raison
-                            </button>
-                            <button
-                              onClick={() => {
-                                const orig = currentTasks.find((x) => x.id === t.id);
-                                setEditingTask({
-                                  task: orig || ({
-                                    id: t.id,
-                                    nom: t.nom,
-                                    date: t.date,
-                                    duree_min: t.duree_min,
-                                    horaire_fixe: t.horaire_fixe,
-                                    plage_disponibilite: null,
-                                    priorite: t.priorite,
-                                    dependances: [],
-                                  } as Tache),
-                                  reason: t.raison,
-                                });
-                              }}
-                              className="px-2 py-0.5 text-[10px] rounded bg-primary/15 hover:bg-primary/25 text-primary font-medium"
-                            >
-                              Ajuster
-                            </button>
-                          </div>
-                        </div>
-                        <p className="text-[11px] text-rose-400 mt-1">{t.raison}</p>
+              {/* ── Panneau latéral : suivi + tâches à placer + légende ── */}
+              <aside className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
+                {/* Suivi de planification */}
+                <div className="rounded-2xl border border-border/40 bg-background/60 p-4 shadow-sm backdrop-blur-sm space-y-3">
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs font-semibold text-foreground/80 flex items-center gap-1.5">
+                      <Timer className="h-3.5 w-3.5 text-primary" />
+                      Suivi de planification
+                    </p>
+                    {activeCalendarResult && (
+                      <span
+                        className={`rounded-full border px-2 py-0.5 text-[10px] font-bold ${
+                          succRate >= 100
+                            ? "bg-emerald-500/15 text-emerald-500 border-emerald-500/30"
+                            : succRate >= 60
+                            ? "bg-amber-400/15 text-amber-500 border-amber-400/30"
+                            : "bg-red-500/15 text-red-500 border-red-500/30"
+                        }`}
+                      >
+                        {succRate}%
+                      </span>
+                    )}
+                  </div>
+
+                  {priorityStats.map((s) => (
+                    <div key={s.priorite} className="space-y-1">
+                      <div className="flex items-center justify-between text-[11px]">
+                        <span className="flex items-center gap-1.5 font-medium">
+                          <span className={`h-2 w-2 rounded-full ${PRIORITE_META[s.priorite].dot}`} />
+                          {PRIORITE_META[s.priorite].label}
+                        </span>
+                        <span className={s.placed === s.total ? "font-semibold text-foreground/70" : "text-foreground/50"}>
+                          {s.placed}/{s.total}
+                        </span>
                       </div>
+                      <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted/30">
+                        <motion.div
+                          className={`h-full rounded-full ${PRIORITE_META[s.priorite].bar}`}
+                          initial={{ width: 0 }}
+                          animate={{ width: `${s.pct}%` }}
+                          transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Tâches à placer */}
+                {activeCalendarResult && activeCalendarResult.taches_non_planifiees.length > 0 && (
+                  <div className="rounded-2xl border border-amber-500/25 bg-amber-500/5 p-4 shadow-sm backdrop-blur-sm space-y-3">
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs font-semibold text-amber-500 flex items-center gap-1.5">
+                        <AlertTriangle className="h-3.5 w-3.5" />
+                        À placer manuellement
+                      </p>
+                      <span className="rounded-full bg-amber-500/15 px-2 py-0.5 text-[10px] font-bold text-amber-500">
+                        {activeCalendarResult.taches_non_planifiees.length}
+                      </span>
+                    </div>
+                    <p className="text-[11px] leading-snug text-foreground/50">
+                      Ces tâches n&apos;ont pas été planifiées dans le mode « {calendarMode === "csp_regles" ? "CSP + Règles" : "CSP seul"} ». Cliquez sur « Ajuster » pour les placer à la main.
+                    </p>
+                    <div className="space-y-2 max-h-[380px] overflow-y-auto pr-1">
+                    {activeCalendarResult.taches_non_planifiees.map((t) => (
+                      <motion.div
+                        key={t.id}
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="rounded-xl border border-amber-500/20 bg-background/70 p-2.5 text-xs space-y-2"
+                      >
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="min-w-0">
+                            <p className="truncate font-semibold text-foreground">{t.nom}</p>
+                            <p className="font-mono text-[10px] text-foreground/40">{t.id} · {t.duree_min}min</p>
+                          </div>
+                          <span
+                            className={`shrink-0 rounded-full border px-2 py-0.5 text-[9px] font-semibold uppercase ${
+                              t.priorite === "urgent"
+                                ? "bg-red-500/10 text-red-500 border-red-500/30"
+                                : t.priorite === "important"
+                                ? "bg-amber-400/10 text-amber-500 border-amber-400/30"
+                                : "bg-neutral-500/10 text-neutral-400 border-neutral-500/20"
+                            }`}
+                          >
+                            {t.priorite}
+                          </span>
+                        </div>
+                        <p className="text-[10px] leading-snug text-neutral-400">{t.raison}</p>
+                        <div className="flex gap-1.5">
+                          <button
+                            onClick={() => setInspectingTask({ task: t as any, reason: t.raison })}
+                            className="flex flex-1 items-center justify-center gap-1 rounded-lg bg-muted/40 px-2 py-1 text-[10px] font-medium text-foreground/70 transition-colors hover:bg-muted/70"
+                          >
+                            <Eye className="h-3 w-3" />
+                            Raison
+                          </button>
+                          <button
+                            onClick={() => {
+                              const orig = currentTasks.find((x) => x.id === t.id);
+                              setEditingTask({
+                                task: orig || ({
+                                  id: t.id,
+                                  nom: t.nom,
+                                  date: t.date,
+                                  duree_min: t.duree_min,
+                                  horaire_fixe: t.horaire_fixe,
+                                  plage_disponibilite: null,
+                                  priorite: t.priorite,
+                                  dependances: [],
+                                } as Tache),
+                                reason: t.raison,
+                              });
+                            }}
+                            className="flex flex-1 items-center justify-center gap-1 rounded-lg bg-primary/15 px-2 py-1 text-[10px] font-semibold text-primary transition-colors hover:bg-primary/25"
+                          >
+                            <Wrench className="h-3 w-3" />
+                            Ajuster
+                          </button>
+                        </div>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
               )}
 
-              {/* Calendar Legend */}
-              <div className="flex flex-wrap gap-4 pt-2 border-t border-border/30 text-xs text-foreground/50">
-                <span className="flex items-center gap-1.5">
-                  <span className="h-2.5 w-2.5 rounded-sm bg-rose-500/40" />
-                  Urgent
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="h-2.5 w-2.5 rounded-sm bg-amber-500/40" />
-                  Important
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="h-2.5 w-2.5 rounded-sm bg-slate-500/40" />
-                  Flexible
-                </span>
-              </div>
+              {/* Tout planifié */}
+                {activeCalendarResult &&
+                  activeCalendarResult.taches_non_planifiees.length === 0 && (
+                    <div className="rounded-2xl border border-emerald-500/25 bg-emerald-500/5 p-4 shadow-sm backdrop-blur-sm">
+                      <div className="flex items-center gap-2.5">
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500/15">
+                          <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                            Toutes les tâches sont planifiées
+                          </p>
+                          <p className="text-[10px] text-foreground/50">Aucune action manuelle requise</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                {/* Légende */}
+                <div className="rounded-2xl border border-border/40 bg-background/60 p-4 shadow-sm backdrop-blur-sm">
+                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-foreground/40">
+                    Légende
+                  </p>
+                  <div className="flex flex-col gap-2 text-xs text-foreground/60">
+                    <span className="flex items-center gap-2">
+                      <span className="h-2.5 w-2.5 rounded-sm bg-red-500/50" />
+                      Urgent
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <span className="h-2.5 w-2.5 rounded-sm bg-amber-400/50" />
+                      Important
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <span className="h-2.5 w-2.5 rounded-sm bg-neutral-500/40" />
+                      Flexible
+                    </span>
+                  </div>
+                </div>
+              </aside>
             </div>
           </motion.div>
         )}

@@ -132,7 +132,7 @@ export default function ModalAjoutTache({
           </div>
 
           {error && (
-            <div className="flex items-center gap-2 rounded-xl bg-rose-500/10 border border-rose-500/20 p-3 text-xs text-rose-400">
+            <div className="flex items-center gap-2 rounded-xl bg-neutral-500/10 border border-neutral-500/20 p-3 text-xs text-neutral-400">
               <AlertCircle className="h-4 w-4 shrink-0" />
               <span>{error}</span>
             </div>
@@ -142,7 +142,7 @@ export default function ModalAjoutTache({
             {/* Nom */}
             <div>
               <label className="block font-medium text-foreground/70 mb-1.5">
-                Nom de la tâche <span className="text-rose-400">*</span>
+                Nom de la tâche <span className="text-neutral-400">*</span>
               </label>
               <input
                 type="text"
@@ -158,7 +158,7 @@ export default function ModalAjoutTache({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label className="block font-medium text-foreground/70 mb-1.5 flex items-center gap-1.5">
-                  <Calendar className="h-3.5 w-3.5 text-primary" /> Date <span className="text-rose-400">*</span>
+                  <Calendar className="h-3.5 w-3.5 text-primary" /> Date <span className="text-neutral-400">*</span>
                 </label>
                 <input
                   type="date"
@@ -171,7 +171,7 @@ export default function ModalAjoutTache({
 
               <div>
                 <label className="block font-medium text-foreground/70 mb-1.5 flex items-center gap-1.5">
-                  <Clock className="h-3.5 w-3.5 text-cyan-400" /> Durée (minutes) <span className="text-rose-400">*</span>
+                  <Clock className="h-3.5 w-3.5 text-neutral-400" /> Durée (minutes) <span className="text-neutral-400">*</span>
                 </label>
                 <input
                   type="number"
@@ -205,13 +205,13 @@ export default function ModalAjoutTache({
             {/* Priorité */}
             <div>
               <label className="block font-medium text-foreground/70 mb-1.5 flex items-center gap-1.5">
-                <Tag className="h-3.5 w-3.5 text-amber-400" /> Niveau de priorité
+                <Tag className="h-3.5 w-3.5 text-neutral-400" /> Niveau de priorité
               </label>
               <div className="grid grid-cols-3 gap-2">
                 {[
-                  { key: "urgent", label: "Urgent", color: "border-rose-500/40 text-rose-400 bg-rose-500/10" },
-                  { key: "important", label: "Important", color: "border-amber-500/40 text-amber-400 bg-amber-500/10" },
-                  { key: "flexible", label: "Flexible", color: "border-slate-500/40 text-slate-400 bg-slate-500/10" },
+                  { key: "urgent", label: "Urgent", color: "border-red-500/40 text-red-500 bg-red-500/10" },
+                  { key: "important", label: "Important", color: "border-amber-400/40 text-amber-500 bg-amber-400/10" },
+                  { key: "flexible", label: "Flexible", color: "border-neutral-500/40 text-neutral-400 bg-neutral-500/10" },
                 ].map((p) => (
                   <button
                     key={p.key}
@@ -239,7 +239,7 @@ export default function ModalAjoutTache({
                   <button
                     type="button"
                     onClick={() => setHoraireFixe("")}
-                    className="text-[10px] text-rose-400 hover:underline"
+                    className="text-[10px] text-neutral-400 hover:underline"
                   >
                     Effacer (rendre flexible)
                   </button>
@@ -273,15 +273,15 @@ export default function ModalAjoutTache({
                         className={`rounded-lg border px-2 py-1 text-[10px] font-medium transition-all ${
                           horaireFixe === slot.debut
                             ? "border-primary bg-primary text-primary-foreground font-bold shadow-sm"
-                            : "border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20"
+                            : "border-neutral-500/30 bg-neutral-500/10 text-neutral-400 hover:bg-neutral-500/20"
                         }`}
                       >
-                        ✨ {slot.label}
+                        {slot.label}
                       </button>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-[11px] text-amber-400/90 italic">
+                  <p className="text-[11px] text-neutral-400/90 italic">
                     Aucun créneau continu de {dureeMin}min libre sur cette journée.
                   </p>
                 )}
@@ -292,7 +292,7 @@ export default function ModalAjoutTache({
             {existingTasks.length > 0 && (
               <div>
                 <label className="block font-medium text-foreground/70 mb-1.5 flex items-center gap-1.5">
-                  <GitBranch className="h-3.5 w-3.5 text-amber-400" /> Tâches préalables (dépendances)
+                  <GitBranch className="h-3.5 w-3.5 text-neutral-400" /> Tâches préalables (dépendances)
                 </label>
                 <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto rounded-xl border border-border/40 bg-muted/15 p-2.5">
                   {existingTasks.map((t) => {
@@ -304,7 +304,7 @@ export default function ModalAjoutTache({
                         onClick={() => toggleDependance(t.id)}
                         className={`rounded-lg border px-2 py-1 text-[11px] transition-all flex items-center gap-1 ${
                           isSelected
-                            ? "border-amber-500 bg-amber-500/20 text-amber-300 font-semibold"
+                            ? "border-neutral-500 bg-neutral-500/20 text-neutral-300 font-semibold"
                             : "border-border/40 bg-background/50 text-foreground/60 hover:bg-background"
                         }`}
                       >

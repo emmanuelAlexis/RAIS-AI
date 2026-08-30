@@ -71,7 +71,7 @@ const InputWithIcon: React.FC<InputWithIconProps> = ({
           <span
             className={`text-xs ${
               remainingChars !== null && remainingChars < 10
-                ? "text-yellow-500"
+                ? "text-neutral-500"
                 : remainingChars !== null && remainingChars < 0
                 ? "text-destructive"
                 : "text-foreground/50"
@@ -136,7 +136,7 @@ const InputWithIcon: React.FC<InputWithIconProps> = ({
               remainingChars !== null && remainingChars < 0
                 ? "bg-destructive"
                 : remainingChars !== null && remainingChars < maxLength * 0.1
-                ? "bg-yellow-500"
+                ? "bg-neutral-500"
                 : "bg-primary"
             }`}
             style={{

@@ -47,7 +47,7 @@ export default function Home() {
   const [result, setResult] = useState<PlanningResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [activeSection, setActiveSection] = useState<"import" | "calendar">("import");
-  
+
   // Modals state
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState<{ task: Tache; reason?: string } | null>(null);
@@ -63,7 +63,6 @@ export default function Home() {
         }
         if (data.resultat) {
           setResult(data.resultat);
-          setActiveSection("calendar");
           if (data.resultat.planning.length > 0) {
             setSelectedDate(data.resultat.planning[0].date);
           }
@@ -106,7 +105,7 @@ export default function Home() {
       newTaches.push(updatedTask);
     }
     setTaches(newTaches);
-    
+
     const nDates = newTaches.map((t) => t.date).sort();
     const nDateDebut = nDates[0] ?? today;
     const nDateFin = nDates[nDates.length - 1] ?? today;
@@ -190,13 +189,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      {/* Background glows */}
-      <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -left-40 top-20 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
-        <div className="absolute -right-32 bottom-20 h-96 w-96 rounded-full bg-violet-500/8 blur-3xl" />
-        <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-3xl" />
-      </div>
-
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-border/40 bg-background/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
@@ -217,7 +209,7 @@ export default function Home() {
               href="/scenarios"
               className="hidden sm:flex items-center gap-1.5 rounded-lg border border-border/50 bg-muted/20 px-3 py-1.5 text-xs font-medium text-foreground/60 hover:text-foreground/90 hover:bg-muted/40 transition-colors"
             >
-              <FlaskConical className="h-3.5 w-3.5 text-violet-400" />
+              <FlaskConical className="h-3.5 w-3.5 text-neutral-400" />
               Banc de test Scénarios
             </Link>
 
@@ -225,7 +217,7 @@ export default function Home() {
               <button
                 onClick={resetCalendar}
                 title="Vider le calendrier"
-                className="flex items-center gap-1.5 rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-1.5 text-xs font-medium text-rose-400 hover:bg-rose-500/20 transition-colors"
+                className="flex items-center gap-1.5 rounded-lg border border-neutral-500/30 bg-neutral-500/10 px-3 py-1.5 text-xs font-medium text-neutral-400 hover:bg-neutral-500/20 transition-colors"
               >
                 <Trash2 className="h-3 w-3" />
                 <span className="hidden sm:inline">Vider</span>
@@ -239,11 +231,10 @@ export default function Home() {
                   key={m}
                   id={`mode-${m}`}
                   onClick={() => setMode(m)}
-                  className={`flex items-center gap-1.5 rounded-md px-2.5 py-1.5 transition-colors font-medium ${
-                    mode === m
-                      ? "bg-background text-foreground shadow-sm"
-                      : "text-foreground/50 hover:text-foreground/80"
-                  }`}
+                  className={`flex items-center gap-1.5 rounded-md px-2.5 py-1.5 transition-colors font-medium ${mode === m
+                    ? "bg-background text-foreground shadow-sm"
+                    : "text-foreground/50 hover:text-foreground/80"
+                    }`}
                 >
                   {m === "csp_seul" ? (
                     <Cpu className="h-3 w-3" />
@@ -268,11 +259,10 @@ export default function Home() {
               key={m}
               id={`mode-mobile-${m}`}
               onClick={() => setMode(m)}
-              className={`flex items-center gap-1.5 rounded-md px-2.5 py-1.5 transition-colors font-medium ${
-                mode === m
-                  ? "bg-background text-foreground shadow-sm"
-                  : "text-foreground/50 hover:text-foreground/80"
-              }`}
+              className={`flex items-center gap-1.5 rounded-md px-2.5 py-1.5 transition-colors font-medium ${mode === m
+                ? "bg-background text-foreground shadow-sm"
+                : "text-foreground/50 hover:text-foreground/80"
+                }`}
             >
               {m === "csp_seul" ? <Cpu className="h-3 w-3" /> : <Brain className="h-3 w-3" />}
               {m === "csp_seul" ? "CSP seul" : "CSP + Règles"}
@@ -290,11 +280,10 @@ export default function Home() {
                   key={s}
                   id={`section-${s}`}
                   onClick={() => setActiveSection(s)}
-                  className={`flex-1 flex items-center justify-center gap-1.5 rounded-lg py-1.5 text-xs font-medium transition-colors ${
-                    activeSection === s
-                      ? "bg-background text-foreground shadow-sm"
-                      : "text-foreground/50 hover:text-foreground/80"
-                  }`}
+                  className={`flex-1 flex  items-center justify-center cursor-pointer gap-1.5 rounded-lg py-1.5 text-xs font-medium transition-colors ${activeSection === s
+                    ? "bg-background text-foreground shadow-sm"
+                    : "text-foreground/50 hover:text-foreground/80"
+                    }`}
                 >
                   {s === "import" ? (
                     <><ChevronRight className="h-3 w-3" /> Gestion Tâches</>
@@ -319,17 +308,41 @@ export default function Home() {
                       <h2 className="text-sm font-semibold text-foreground/80 flex items-center gap-2">
                         <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-[10px] font-bold text-primary">1</span>
                         Importer ou ajouter
+                        {taches.length > 0 && (
+                          <span className="rounded-full bg-muted/60 border border-border/40 px-2 py-0.5 text-[10px] font-medium text-foreground/50">
+                            {taches.length} tâche{taches.length > 1 ? 's' : ''}
+                          </span>
+                        )}
                       </h2>
                       <button
                         onClick={() => setIsAddModalOpen(true)}
-                        className="flex items-center gap-1 rounded-xl bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 px-2.5 py-1 text-xs font-semibold transition-colors"
+                        className="flex items-center gap-1 rounded-lg border border-border/50 bg-muted/20 px-2.5 py-1 text-xs font-medium text-foreground/60 hover:bg-muted/40 hover:text-foreground transition-colors"
                       >
                         <Plus className="h-3.5 w-3.5" />
-                        Ajouter manuellement
+                        Ajouter
                       </button>
                     </div>
 
                     <ImportTaches existingTaches={taches} onImport={setTaches} />
+
+                    {/* Inline task list */}
+                    {taches.length > 0 && (
+                      <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
+                        {taches.map((t) => (
+                          <div
+                            key={t.id}
+                            className="flex items-center gap-2 rounded-lg border border-border/30 bg-muted/10 px-3 py-2 text-xs"
+                          >
+                            <span className={`h-2 w-2 rounded-full shrink-0 ${t.priorite === 'urgent' ? 'bg-red-500' :
+                              t.priorite === 'important' ? 'bg-amber-400' : 'bg-neutral-400'
+                              }`} />
+                            <span className="flex-1 font-medium text-foreground/80 truncate">{t.nom}</span>
+                            <span className="text-foreground/40 font-mono shrink-0">{t.date}</span>
+                            <span className="text-foreground/40 shrink-0">{t.duree_min}min</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   {/* Mode info card */}
@@ -339,22 +352,20 @@ export default function Home() {
                       Mode de planification
                     </h2>
                     <div className="space-y-2 text-xs">
-                      <div className={`rounded-xl border p-3 cursor-pointer transition-colors ${
-                        mode === "csp_seul"
-                          ? "border-primary/50 bg-primary/10"
-                          : "border-border/40 bg-muted/20 hover:bg-muted/40"
-                      }`} onClick={() => setMode("csp_seul")}>
+                      <div className={`rounded-xl border p-3 cursor-pointer transition-colors ${mode === "csp_seul"
+                        ? "border-primary/50 bg-primary/10"
+                        : "border-border/40 bg-muted/20 hover:bg-muted/40"
+                        }`} onClick={() => setMode("csp_seul")}>
                         <div className="flex items-center gap-2 mb-1">
                           <Cpu className="h-3.5 w-3.5 text-primary" />
                           <span className="font-semibold text-foreground/80">CSP seul</span>
                         </div>
                         <p className="text-foreground/50">Planification par contraintes pures. Retourne un échec si aucune solution n&apos;existe.</p>
                       </div>
-                      <div className={`rounded-xl border p-3 cursor-pointer transition-colors ${
-                        mode === "csp_regles"
-                          ? "border-primary/50 bg-primary/10"
-                          : "border-border/40 bg-muted/20 hover:bg-muted/40"
-                      }`} onClick={() => setMode("csp_regles")}>
+                      <div className={`rounded-xl border p-3 cursor-pointer transition-colors ${mode === "csp_regles"
+                        ? "border-primary/50 bg-primary/10"
+                        : "border-border/40 bg-muted/20 hover:bg-muted/40"
+                        }`} onClick={() => setMode("csp_regles")}>
                         <div className="flex items-center gap-2 mb-1">
                           <Brain className="h-3.5 w-3.5 text-primary" />
                           <span className="font-semibold text-foreground/80">CSP + Règles</span>
@@ -419,16 +430,16 @@ export default function Home() {
                       />
                       {/* Stats */}
                       <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
-                        <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/20 p-2">
-                          <p className="text-lg font-bold text-emerald-400">{result.planning.length}</p>
+                        <div className="rounded-lg bg-neutral-500/10 border border-neutral-500/20 p-2">
+                          <p className="text-lg font-bold text-neutral-400">{result.planning.length}</p>
                           <p className="text-foreground/50">placées</p>
                         </div>
-                        <div className="rounded-lg bg-amber-500/10 border border-amber-500/20 p-2">
-                          <p className="text-lg font-bold text-amber-400">{result.avertissements.length}</p>
+                        <div className="rounded-lg bg-neutral-500/10 border border-neutral-500/20 p-2">
+                          <p className="text-lg font-bold text-neutral-400">{result.avertissements.length}</p>
                           <p className="text-foreground/50">avertissements</p>
                         </div>
-                        <div className="rounded-lg bg-rose-500/10 border border-rose-500/20 p-2">
-                          <p className="text-lg font-bold text-rose-400">{result.echecs.length}</p>
+                        <div className="rounded-lg bg-neutral-500/10 border border-neutral-500/20 p-2">
+                          <p className="text-lg font-bold text-neutral-400">{result.echecs.length}</p>
                           <p className="text-foreground/50">échecs</p>
                         </div>
                       </div>
@@ -499,15 +510,15 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-4 rounded-2xl border border-rose-500/30 bg-rose-500/5 p-4 shadow-sm"
+                className="mt-4 rounded-2xl border border-neutral-500/30 bg-neutral-500/5 p-4 shadow-sm"
               >
-                <h3 className="text-sm font-semibold text-rose-400 mb-3 flex items-center gap-2">
+                <h3 className="text-sm font-semibold text-neutral-400 mb-3 flex items-center gap-2">
                   <AlertTriangle className="h-4 w-4" />
                   {result.taches_non_planifiees.length} tâche(s) non planifiée(s)
                 </h3>
                 <div className="space-y-3">
                   {result.taches_non_planifiees.map((t) => (
-                    <div key={t.id} className="rounded-xl border border-rose-500/20 bg-background/60 p-3 space-y-2">
+                    <div key={t.id} className="rounded-xl border border-neutral-500/20 bg-background/60 p-3 space-y-2">
                       {/* Task header */}
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
@@ -515,10 +526,9 @@ export default function Home() {
                           <p className="text-xs text-foreground/50 mt-0.5">
                             {t.date} &middot; {t.duree_min}min
                             {t.horaire_fixe && <> &middot; fixe {t.horaire_fixe}</>}
-                            &middot; <span className={`font-medium capitalize ${
-                              t.priorite === 'urgent' ? 'text-rose-400' :
-                              t.priorite === 'important' ? 'text-amber-400' : 'text-slate-400'
-                            }`}>{t.priorite}</span>
+                            · <span className={`font-medium capitalize ${t.priorite === 'urgent' ? 'text-red-500' :
+                              t.priorite === 'important' ? 'text-amber-400' : 'text-foreground/50'
+                              }`}>{t.priorite}</span>
                           </p>
                         </div>
 
@@ -563,9 +573,9 @@ export default function Home() {
                       </div>
 
                       {/* Conflict reason */}
-                      <div className="flex items-start gap-2 rounded-lg bg-rose-500/10 border border-rose-500/20 px-3 py-2">
-                        <AlertTriangle className="h-3.5 w-3.5 text-rose-400 mt-0.5 shrink-0" />
-                        <p className="text-xs text-rose-300 leading-relaxed">{t.raison}</p>
+                      <div className="flex items-start gap-2 rounded-lg bg-neutral-500/10 border border-neutral-500/20 px-3 py-2">
+                        <AlertTriangle className="h-3.5 w-3.5 text-neutral-400 mt-0.5 shrink-0" />
+                        <p className="text-xs text-neutral-300 leading-relaxed">{t.raison}</p>
                       </div>
                     </div>
                   ))}
@@ -576,9 +586,9 @@ export default function Home() {
             {/* Legend */}
             <div className="flex flex-wrap gap-3 text-xs text-foreground/50">
               {[
-                { label: "Urgent", color: "bg-rose-500/40" },
-                { label: "Important", color: "bg-amber-500/40" },
-                { label: "Flexible", color: "bg-slate-500/40" },
+                { label: "Urgent", color: "bg-neutral-500/40" },
+                { label: "Important", color: "bg-neutral-500/40" },
+                { label: "Flexible", color: "bg-neutral-500/40" },
               ].map(({ label, color }) => (
                 <span key={label} className="flex items-center gap-1.5">
                   <span className={`h-2.5 w-2.5 rounded-sm ${color}`} />

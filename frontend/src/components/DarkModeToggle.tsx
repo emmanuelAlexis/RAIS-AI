@@ -39,7 +39,7 @@ const DarkModeToggle = ({
           className={`absolute rounded-full ${
             variants === "block"
               ? "bg-primary w-4 h-4 shadow-md"
-              : "bg-gray-800 dark:bg-yellow-300 w-6 h-6"
+              : "bg-gray-800 dark:bg-neutral-300 w-6 h-6"
           }`}
           animate={{
             x: isDark

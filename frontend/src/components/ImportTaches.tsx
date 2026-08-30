@@ -53,9 +53,9 @@ export default function ImportTaches({ existingTaches, onImport }: ImportTachesP
   };
 
   const prioriteColors: Record<string, string> = {
-    urgent: "bg-rose-500/15 text-rose-400 border-rose-500/30",
-    important: "bg-amber-500/15 text-amber-400 border-amber-500/30",
-    flexible: "bg-slate-500/15 text-slate-400 border-slate-500/30",
+    urgent: "bg-red-500/10 text-red-500 border-red-500/30",
+    important: "bg-amber-400/10 text-amber-500 border-amber-400/30",
+    flexible: "bg-neutral-500/10 text-neutral-400 border-neutral-500/20",
   };
 
   return (
@@ -85,7 +85,7 @@ export default function ImportTaches({ existingTaches, onImport }: ImportTachesP
           {loading ? (
             <Loader2 className="h-10 w-10 animate-spin text-primary" />
           ) : lastImported ? (
-            <CheckCircle2 className="h-10 w-10 text-emerald-400" />
+            <CheckCircle2 className="h-10 w-10 text-neutral-400" />
           ) : (
             <Upload className="h-10 w-10 text-foreground/30" />
           )}
@@ -107,7 +107,7 @@ export default function ImportTaches({ existingTaches, onImport }: ImportTachesP
         {/* Format badges — shown when nothing imported yet */}
         {!lastImported && !loading && (
           <div className="mt-4 flex justify-center gap-2">
-            {([["JSON", FileJson, "text-sky-400"], ["CSV", FileSpreadsheet, "text-emerald-400"], ["XLSX", FileSpreadsheet, "text-violet-400"]] as [string, React.ElementType, string][]).map(
+            {([["JSON", FileJson, "text-neutral-400"], ["CSV", FileSpreadsheet, "text-neutral-400"], ["XLSX", FileSpreadsheet, "text-neutral-400"]] as [string, React.ElementType, string][]).map(
               ([label, IconComp, color]) => (
                 <span
                   key={label}
@@ -129,7 +129,7 @@ export default function ImportTaches({ existingTaches, onImport }: ImportTachesP
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="flex items-start gap-2 rounded-xl border border-rose-500/30 bg-rose-500/10 p-3 text-sm text-rose-400"
+            className="flex items-start gap-2 rounded-xl border border-neutral-500/30 bg-neutral-500/10 p-3 text-sm text-neutral-400"
           >
             <AlertCircle className="h-4 w-4 mt-0.5 shrink-0" />
             <span>{error}</span>
@@ -153,7 +153,7 @@ export default function ImportTaches({ existingTaches, onImport }: ImportTachesP
               <span className="text-xs font-medium text-foreground/50 uppercase tracking-wider">Dernier import — {lastImported.length} tâche(s)</span>
               <button
                 onClick={() => { setLastImported(null); setFileName(null); onImport(existingTaches.filter(t => !lastImported.find(l => l.id === t.id))); }}
-                className="text-foreground/30 hover:text-rose-400 transition-colors"
+                className="text-foreground/30 hover:text-neutral-400 transition-colors"
                 title="Annuler ce dernier import"
               >
                 <X className="h-3.5 w-3.5" />

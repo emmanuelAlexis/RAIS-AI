@@ -114,8 +114,8 @@ export default function ModalPlacementManuel({
 
           {/* Reason / Diagnostic banner */}
           {(failureReason || decision) && (
-            <div className="rounded-2xl bg-amber-500/10 border border-amber-500/25 p-3 text-xs space-y-1">
-              <div className="flex items-center gap-1.5 text-amber-400 font-semibold">
+            <div className="rounded-2xl bg-neutral-500/10 border border-neutral-500/25 p-3 text-xs space-y-1">
+              <div className="flex items-center gap-1.5 text-neutral-400 font-semibold">
                 <AlertTriangle className="h-3.5 w-3.5 shrink-0" />
                 <span>Raisonnement du système</span>
               </div>
@@ -143,7 +143,7 @@ export default function ModalPlacementManuel({
 
               <div>
                 <label className="block font-medium text-foreground/70 mb-1 flex items-center gap-1">
-                  <Clock className="h-3.5 w-3.5 text-cyan-400" /> Durée (min)
+                  <Clock className="h-3.5 w-3.5 text-neutral-400" /> Durée (min)
                 </label>
                 <input
                   type="number"
@@ -160,13 +160,13 @@ export default function ModalPlacementManuel({
             {/* Priorité */}
             <div>
               <label className="block font-medium text-foreground/70 mb-1 flex items-center gap-1">
-                <Tag className="h-3.5 w-3.5 text-amber-400" /> Priorité
+                <Tag className="h-3.5 w-3.5 text-neutral-400" /> Priorité
               </label>
               <div className="grid grid-cols-3 gap-2">
                 {[
-                  { key: "urgent", label: "Urgent", color: "border-rose-500/40 text-rose-400 bg-rose-500/10" },
-                  { key: "important", label: "Important", color: "border-amber-500/40 text-amber-400 bg-amber-500/10" },
-                  { key: "flexible", label: "Flexible", color: "border-slate-500/40 text-slate-400 bg-slate-500/10" },
+                  { key: "urgent", label: "Urgent", color: "border-red-500/40 text-red-500 bg-red-500/10" },
+                  { key: "important", label: "Important", color: "border-amber-400/40 text-amber-500 bg-amber-400/10" },
+                  { key: "flexible", label: "Flexible", color: "border-neutral-500/40 text-neutral-400 bg-neutral-500/10" },
                 ].map((p) => (
                   <button
                     key={p.key}
@@ -195,7 +195,7 @@ export default function ModalPlacementManuel({
                   <button
                     type="button"
                     onClick={() => setHoraireFixe("")}
-                    className="text-[10px] text-rose-400 hover:underline"
+                    className="text-[10px] text-neutral-400 hover:underline"
                   >
                     Rendre flexible
                   </button>
@@ -229,15 +229,15 @@ export default function ModalPlacementManuel({
                         className={`rounded-lg border px-2.5 py-1 text-[11px] font-medium transition-all ${
                           horaireFixe === slot.debut
                             ? "border-primary bg-primary text-primary-foreground font-bold shadow-sm"
-                            : "border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20"
+                            : "border-neutral-500/30 bg-neutral-500/10 text-neutral-400 hover:bg-neutral-500/20"
                         }`}
                       >
-                        ✨ {slot.label}
+                        {slot.label}
                       </button>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-[11px] text-amber-400/90 italic">
+                  <p className="text-[11px] text-neutral-400/90 italic">
                     Aucun créneau continu de {dureeMin}min disponible sur cette journée. Modifiez la date ou réduisez la durée.
                   </p>
                 )}
