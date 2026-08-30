@@ -1,0 +1,13 @@
+[
+  {"id": "t01", "nom": "Tâche 01", "date": "2026-09-07", "duree_min": 30, "horaire_fixe": null, "plage_disponibilite": null, "priorite": "flexible", "dependances": []},
+  {"id": "t02", "nom": "Tâche 02", "date": "2026-09-07", "duree_min": 30, "horaire_fixe": null, "plage_disponibilite": null, "priorite": "flexible", "dependances": []},
+  {"id": "t03", "nom": "Tâche 03", "date": "2026-09-07", "duree_min": 45, "horaire_fixe": null, "plage_disponibilite": null, "priorite": "important", "dependances": []},
+  {"id": "t04", "nom": "Tâche 04", "date": "2026-09-07", "duree_min": 30, "horaire_fixe": null, "plage_disponibilite": null, "priorite": "important", "dependances": []},
+  {"id": "t05", "nom": "Tâche 05", "date": "2026-09-07", "duree_min": 60, "horaire_fixe": null, "plage_disponibilite": null, "priorite": "urgent", "dependances": []},
+  {"id": "t06", "nom": "Tâche 06", "date": "2026-09-07", "duree_min": 30, "horaire_fixe": null, "plage_disponibilite": null, "priorite": "flexible", "dependances": []},
+  {"id": "t07", "nom": "Tâche 07", "date": "2026-09-07", "duree_min": 30, "horaire_fixe": null, "plage_disponibilite": null, "priorite": "important", "dependances": []},
+  {"id": "t08", "nom": "Tâche 08", "date": "2026-09-07", "duree_min": 45, "horaire_fixe": null, "plage_disponibilite": null, "priorite": "flexible", "dependances": []},
+  {"id": "t09", "nom": "Tâche 09", "date": "2026-09-07", "duree_min": 30, "horaire_fixe": null, "plage_disponibilite": null, "priorite": "urgent", "dependances": []},
+  {"id": "t10", "nom": "Tâche 10", "date": "2026-09-07", "duree_min": 30, "horaire_fixe": null, "plage_disponibilite": null, "priorite": "important", "dependances": []},
+  {"id": "t11", "nom": "Tâche 11", "date": "2026-09-07", "duree_min": 30, "horaire_fixe": null, "plage_disponibilite": null, "priorite": "flexible", "dependances": []}
+]

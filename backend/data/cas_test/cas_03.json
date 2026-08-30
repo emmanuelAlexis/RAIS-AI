@@ -1,0 +1,11 @@
+[
+  {
+    "id": "t1",
+    "nom": "Lecture documents",
+    "date": "2026-09-03",
+    "horaire_fixe": null,
+    "plage_disponibilite": null,
+    "priorite": "flexible",
+    "dependances": []
+  }
+]

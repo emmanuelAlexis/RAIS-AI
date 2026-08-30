@@ -1,0 +1,22 @@
+[
+  {
+    "id": "tA",
+    "nom": "Collecte données",
+    "date": "2026-09-06",
+    "duree_min": 45,
+    "horaire_fixe": null,
+    "plage_disponibilite": null,
+    "priorite": "important",
+    "dependances": []
+  },
+  {
+    "id": "tB",
+    "nom": "Analyse données",
+    "date": "2026-09-06",
+    "duree_min": 60,
+    "horaire_fixe": null,
+    "plage_disponibilite": null,
+    "priorite": "urgent",
+    "dependances": ["tA"]
+  }
+]

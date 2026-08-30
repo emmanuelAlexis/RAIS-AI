@@ -1,0 +1,4 @@
+id,nom,date,duree_min,horaire_fixe,priorite,dependances
+t1,Réunion équipe,2026-09-01,60,,important,
+t2,Rédaction rapport,2026-09-01,90,,urgent,
+t3,Révision emails,2026-09-01,30,,flexible,

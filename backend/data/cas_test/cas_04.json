@@ -1,0 +1,32 @@
+[
+  {
+    "id": "t1",
+    "nom": "Réunion A",
+    "date": "2026-09-04",
+    "duree_min": 60,
+    "horaire_fixe": "09:00",
+    "plage_disponibilite": null,
+    "priorite": "urgent",
+    "dependances": []
+  },
+  {
+    "id": "t2",
+    "nom": "Réunion B",
+    "date": "2026-09-04",
+    "duree_min": 60,
+    "horaire_fixe": "09:30",
+    "plage_disponibilite": null,
+    "priorite": "urgent",
+    "dependances": []
+  },
+  {
+    "id": "t3",
+    "nom": "Réunion C",
+    "date": "2026-09-04",
+    "duree_min": 60,
+    "horaire_fixe": "09:45",
+    "plage_disponibilite": null,
+    "priorite": "important",
+    "dependances": []
+  }
+]

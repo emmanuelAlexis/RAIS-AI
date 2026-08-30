@@ -1,0 +1,12 @@
+[
+  {
+    "id": "t1",
+    "nom": "Séance tardive",
+    "date": "2026-09-09",
+    "duree_min": 60,
+    "horaire_fixe": "21:00",
+    "plage_disponibilite": null,
+    "priorite": "flexible",
+    "dependances": []
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "t1",
+    "nom": "Réunion équipe",
+    "date": "2026-09-01",
+    "duree_min": 60,
+    "horaire_fixe": null,
+    "plage_disponibilite": null,
+    "priorite": "important",
+    "dependances": []
+  },
+  {
+    "id": "t2",
+    "nom": "Rédaction rapport",
+    "date": "2026-09-01",
+    "duree_min": 90,
+    "horaire_fixe": null,
+    "plage_disponibilite": null,
+    "priorite": "urgent",
+    "dependances": []
+  },
+  {
+    "id": "t3",
+    "nom": "Révision emails",
+    "date": "2026-09-01",
+    "duree_min": 30,
+    "horaire_fixe": null,
+    "plage_disponibilite": null,
+    "priorite": "flexible",
+    "dependances": []
+  }
+]

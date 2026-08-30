@@ -1,0 +1,22 @@
+[
+  {
+    "id": "t1",
+    "nom": "Formation Alpha",
+    "date": "2026-09-05",
+    "duree_min": 60,
+    "horaire_fixe": "14:00",
+    "plage_disponibilite": null,
+    "priorite": "important",
+    "dependances": []
+  },
+  {
+    "id": "t2",
+    "nom": "Formation Beta",
+    "date": "2026-09-05",
+    "duree_min": 60,
+    "horaire_fixe": "14:00",
+    "plage_disponibilite": null,
+    "priorite": "important",
+    "dependances": []
+  }
+]

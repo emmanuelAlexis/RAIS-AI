@@ -1,0 +1,91 @@
+{
+  "taches": [
+    {
+      "id": "t1",
+      "nom": "Présentation client",
+      "date": "2026-09-02",
+      "duree_min": 60,
+      "horaire_fixe": "10:00",
+      "plage_disponibilite": null,
+      "priorite": "urgent",
+      "dependances": []
+    },
+    {
+      "id": "t2",
+      "nom": "Appel téléphonique",
+      "date": "2026-09-02",
+      "duree_min": 45,
+      "horaire_fixe": "10:30",
+      "plage_disponibilite": null,
+      "priorite": "important",
+      "dependances": []
+    },
+    {
+      "id": "t3",
+      "nom": "Révision emails",
+      "date": "2026-09-01",
+      "duree_min": 30,
+      "horaire_fixe": null,
+      "plage_disponibilite": null,
+      "priorite": "flexible",
+      "dependances": []
+    }
+  ],
+  "resultat": {
+    "planning": [
+      {
+        "id": "t2",
+        "nom": "Rédaction rapport",
+        "date": "2026-09-01",
+        "debut": "08:00",
+        "fin": "09:30",
+        "priorite": "urgent"
+      },
+      {
+        "id": "t1",
+        "nom": "Réunion équipe",
+        "date": "2026-09-01",
+        "debut": "09:45",
+        "fin": "10:45",
+        "priorite": "important"
+      },
+      {
+        "id": "t3",
+        "nom": "Révision emails",
+        "date": "2026-09-01",
+        "debut": "11:00",
+        "fin": "11:30",
+        "priorite": "flexible"
+      }
+    ],
+    "decisions": [
+      {
+        "etape": "placement_csp",
+        "tache_id": "t2",
+        "resultat": "place",
+        "date": "2026-09-01",
+        "creneau": "08:00-09:30",
+        "raison": "Créneau trouvé par le solveur CSP pour 'Rédaction rapport'."
+      },
+      {
+        "etape": "placement_csp",
+        "tache_id": "t1",
+        "resultat": "place",
+        "date": "2026-09-01",
+        "creneau": "09:45-10:45",
+        "raison": "Créneau trouvé par le solveur CSP pour 'Réunion équipe'."
+      },
+      {
+        "etape": "placement_csp",
+        "tache_id": "t3",
+        "resultat": "place",
+        "date": "2026-09-01",
+        "creneau": "11:00-11:30",
+        "raison": "Créneau trouvé par le solveur CSP pour 'Révision emails'."
+      }
+    ],
+    "avertissements": [],
+    "echecs": [],
+    "taches_non_planifiees": []
+  }
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "t1",
+    "nom": "Atelier planifié",
+    "date": "2026-09-08",
+    "duree_min": 120,
+    "horaire_fixe": "09:00",
+    "plage_disponibilite": null,
+    "priorite": "important",
+    "dependances": []
+  },
+  {
+    "id": "t2",
+    "nom": "Réunion urgente",
+    "date": "2026-09-08",
+    "duree_min": 60,
+    "horaire_fixe": "10:00",
+    "plage_disponibilite": null,
+    "priorite": "urgent",
+    "dependances": []
+  }
+]

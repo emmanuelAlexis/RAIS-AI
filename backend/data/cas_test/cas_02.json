@@ -1,0 +1,22 @@
+[
+  {
+    "id": "t1",
+    "nom": "Présentation client",
+    "date": "2026-09-02",
+    "duree_min": 60,
+    "horaire_fixe": "10:00",
+    "plage_disponibilite": null,
+    "priorite": "urgent",
+    "dependances": []
+  },
+  {
+    "id": "t2",
+    "nom": "Appel téléphonique",
+    "date": "2026-09-02",
+    "duree_min": 45,
+    "horaire_fixe": "10:30",
+    "plage_disponibilite": null,
+    "priorite": "important",
+    "dependances": []
+  }
+]
