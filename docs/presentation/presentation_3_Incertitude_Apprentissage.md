@@ -26,3 +26,15 @@ Enfin, les cas d'incertitude sont intégrés à l'évaluation : options non vide
 
 - **Pas de tranchage arbitraire** en priorité égale → deux options proposées à l'utilisateur.
 - **Mémoire des décisions** (`etat_sauvegarde.json`) = base du volet apprentissage.
+
+## My own version:
+
+Pour ma part, je me suis occupé de la gestion des cas incertains et de la mémoire du système.
+
+J’ai surtout travaillé sur les situations où le système peut avoir plusieurs choix, par exemple lorsqu’il y a un conflit.
+
+Dans ce cas, le système ne choisit pas au hasard : il propose les deux possibilités et laisse l’utilisateur décider.
+
+J’ai aussi mis en place la sauvegarde de l’état, avec etat_sauvegarde.json, pour pouvoir reprendre une planification et garder les décisions précédentes.
+
+Enfin, ces données peuvent servir plus tard à analyser les conflits répétitifs et améliorer les règles de priorité.
